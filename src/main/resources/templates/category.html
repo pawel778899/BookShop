@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.5.2/css/bootstrap.min.css">
+    <script src="/webjars/bootstrap/5.5.2/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<center>
+
+    <form method="post" th:action="@{/categories/add}" th:object="${newCategory}">
+
+        <label for="categoryName">Category:</label>
+        <input type="text" id="categoryName" th:field="*{name}"><br><br>
+        <select th:field="*{parentId}">
+            <option th:each="category : ${categories}" th:text="${category.name}" th:value="${category.id}"></option>
+        </select>
+       <button type ="submit">Dodaj kategorię</button>
+    </form>
+
+
+
+    <table class="table">
+        <h1><div th:text="Bookshop">Bookshop</div></h1>
+        <table border="4" style="width:800px">
+            <h2>All categories:</h2>
+            <tr>
+                <th>Id: </th>
+                <th>Category: </th>
+            </tr>
+            <tbody>
+            </tr>
+
+            <tr th:each="category : ${categories}">
+
+                <td th:text="${category.id}">id</td>
+                <td th:text="${category.name}">Jakaś książka</td>
+
+            </tr>
+            </tbody>
+        </table>
+</center>
+</body>
+</html>
