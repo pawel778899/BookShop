@@ -22,8 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<CategoryDto> getAllParents() {
-//        return categoryRepository.findAll();
-         List<Category> categories = categoryRepository.findAll();
+        List<Category> categories = categoryRepository.findAll();
         return categories.stream().filter(category -> category.getParent()==null).map(category -> new CategoryDto(category.getId(),category.getName(), -1L)).toList();
 
     }
@@ -62,8 +61,10 @@ public class CategoryServiceImpl implements CategoryService {
             category.setParent(pC);
             categoryRepository.save(category);
         });
-
-
+    }
+    @Override
+    public void delete(Long id) {
+        categoryRepository.deleteById(id);
     }
 }
 
